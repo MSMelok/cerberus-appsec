@@ -1,16 +1,18 @@
-# Aegis Web Scanner 🛡️
+# Cerberus AppSec 🛡️🐕
 
-An AI-driven, consent-based web security scanner designed to help organizations and site owners eliminate critical web vulnerabilities, logic flaws, and zero-day risks before exploitation.
+An AI-driven, consent-first web application security scanner designed to detect complex logic flaws, eliminate zero-day risks, and reduce false positives through intelligent multi-layered analysis.
 
 ---
 
 ## 🎯 Mission & Vision
 
-Modern AppSec tools often produce excessive false positives or miss complex, multi-step business logic flaws. Drawing from hands-on offensive security experience in **Anthropic's Cyber Verification Program (CVP)** and active vulnerability disclosure on **HackerOne**, this project aims to bridge the gap between automated scanning and human-level security analysis.
+Modern AppSec tools often produce excessive false positives or miss multi-step business logic flaws. Named after the legendary three-headed guardian, **Cerberus AppSec** combines deterministic scanning, dynamic crawling, and LLM-assisted verification to bridge the gap between automated tools and human-level security testing.
 
-*   **Consent-First Architecture:** Scans only run against target environments with explicit authorization and verified ownership.
-*   **High Accuracy Focus:** Combines static/dynamic analysis with LLM-assisted verification to achieve high signal-to-noise detection.
-*   **Systemic Attack Prevention:** Designed with real-world threat vectors in mind to prevent wide-scale automated web exploits.
+Drawing from active offensive security experience in **Anthropic's Cyber Verification Program (CVP)** and vulnerability research on **HackerOne**, this project aims to protect critical web infrastructure from systemic threats before exploitation occurs.
+
+* **Consent-First Architecture:** Active scans are strictly locked until explicit domain authorization/ownership is verified.
+* **Multi-Layered Defense:** Integrates rule-based dynamic detection with AI-driven attack path modeling.
+* **Signal-over-Noise Focus:** Built to filter out trivial false positives (%99.9 safety focus) so security teams can focus on true critical vectors.
 
 ---
 
@@ -18,42 +20,40 @@ Modern AppSec tools often produce excessive false positives or miss complex, mul
 
 | Layer | Technology / Tool | Purpose |
 | :--- | :--- | :--- |
-| **Core Scanner Engine** | Python / Go | High-performance async HTTP crawling & AST parsing |
-| **AI / Reasoner** | Anthropic Claude API / Local SLMs | Vulnerability triage, logic flow mapping, false-positive reduction |
-| **Vulnerability Knowledgebase** | Nuclei Templates / Semgrep / Custom Rules | Deterministic pattern matching & known CVE checks |
-| **Data & Queue** | PostgreSQL / Redis | Scan state management, task distribution, and audit logs |
-| **Reporting & CLI** | Python (Rich / Typer) | Structured markdown report generation & terminal output |
+| **CLI / Controller** | Python (`Typer`, `Rich`) | High-performance, interactive terminal application |
+| **Crawler Engine** | Async Python (`httpx`, `asyncio`) | Asynchronous crawling, link extraction, and target scope isolation |
+| **Rule Engine** | Dynamic Plugins (`Pydantic`) | Deterministic vulnerability checks (Headers, CSRF, Injection, Misconfigurations) |
+| **AI Reasoner** | Anthropic Claude API / Local Models | Vulnerability triage, logic flow assessment, and false-positive filtering |
+| **Data & State** | PostgreSQL / Redis / SQLite | Scan state management, session handling, and audit logs |
 
 ---
 
-## 🗺️ Development Roadmap
+## 🗺️ Project Roadmap
 
-### Phase 1: Core Engine & Verification (Current)
-* [ ] Implement async web crawler with scope & domain ownership validation.
-* [ ] Integrate deterministic vulnerability rule engine (headers, injection vectors, CSRF, misconfigurations).
-* [ ] Build AST parsing pipeline for common web backend code structures.
+### Phase 1: Core Async Engine & Base Rules (Current)
+* [x] Lightweight CLI architecture and environment setup.
+* [ ] Async HTTP crawler with strict scope and sub-domain isolation.
+* [ ] Plugin architecture for standard vulnerability rules (headers, leak checks, known CVE patterns).
 
-### Phase 2: AI Triage & Reasoner Integration
-* [ ] Connect LLM layer to evaluate scan results and simulate attack paths ethically.
-* [ ] Implement automated false-positive filtering logic.
-* [ ] Develop standardized security advisory output with context-aware remediation steps.
+### Phase 2: Domain Authorization & Verification
+* [ ] Implement domain-ownership verification mechanisms (DNS TXT record / HTTP upload challenge).
+* [ ] Build scope enforcement to prevent unauthorized active testing.
 
-### Phase 3: Reporting & Community Release
-* [ ] Export options (JSON, SARIF, Markdown advisories).
-* [ ] Open-source initial rulesets and scanner modules.
-* [ ] Continuous alignment with emerging CVP research patterns.
+### Phase 3: AI Triage & Reasoner Integration
+* [ ] Integrate Claude API for analyzing complex response payloads and potential zero-day attack vectors.
+* [ ] Automated context-aware remediation output and false-positive reduction pipeline.
 
 ---
 
 ## 🔒 Ethics & Authorization
 
-This tool is strictly designed for **defensive security testing and authorized security assessments**. It requires explicit consent from domain owners prior to initiating active scans. Unsanctioned scanning against third-party systems is explicitly unsupported.
+This software is strictly intended for **defensive security assessments and authorized testing**. Cerberus AppSec requires explicit verification of domain ownership prior to executing active scans against target environments. Unsanctioned scanning against third-party systems is explicitly prohibited and unsupported.
 
 ---
 
-## 🤝 Contributing & Contact
+## 🤝 Research & Context
 
-Created as part of ongoing security research and participation in the **Anthropic Cyber Verification Program (CVP)** and **HackerOne**. 
+Developed as part of ongoing web security research and active participation in the **Anthropic Cyber Verification Program (CVP)** and **HackerOne**.
 
-*   **Issues:** For bug reports or feature requests, please open a GitHub Issue.
-*   **Responsible Disclosure:** For vulnerability reports regarding this scanner itself, please see `SECURITY.md`.
+* **Issues & Feature Requests:** Please submit a GitHub Issue.
+* **Responsible Disclosure:** For vulnerability disclosures regarding Cerberus AppSec itself, please see `SECURITY.md`.
